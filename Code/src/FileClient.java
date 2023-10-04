@@ -1,6 +1,5 @@
 import java.net.*;
 import java.io.*;
-import java.util.Arrays;
 
 public class FileClient
 {
