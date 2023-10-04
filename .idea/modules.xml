@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/packets/Main.iml" filepath="$PROJECT_DIR$/packets/Main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Code/Main.iml" filepath="$PROJECT_DIR$/Code/Main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/csnetwk0304.iml" filepath="$PROJECT_DIR$/.idea/csnetwk0304.iml" />
     </modules>
   </component>
