@@ -1,7 +1,8 @@
 import java.net.*;
 import java.io.*;
+import java.util.Arrays;
 
-public class CSNETWKClient
+public class FileClient
 {
 	public static void main(String[] args)
 	{
@@ -18,8 +19,23 @@ public class CSNETWKClient
 			dosWriter.writeUTF("Client: Hello from client" + clientEndpoint.getLocalSocketAddress());
 			
 			DataInputStream disReader = new DataInputStream(clientEndpoint.getInputStream());
-			System.out.println(disReader.readUTF());
-			
+
+			//Read File Content
+			int fileContentLength = disReader.readInt();
+			byte[] fileContentBytes = new byte[fileContentLength];
+			disReader.readFully(fileContentBytes,0,fileContentBytes.length);
+			String contents = new String(fileContentBytes);
+			//Write Content
+			try{
+				String filename = "Received.txt";
+				FileWriter myWriter = new FileWriter(filename);
+				myWriter.write(contents);
+				myWriter.close();
+				System.out.println("Downloaded file \""+filename+"\"");
+			} catch(Exception e){
+				System.out.println("Download Failed");
+			}
+
 			clientEndpoint.close();
 		}
 		catch (Exception e)
