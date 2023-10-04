@@ -15,21 +15,23 @@ public class FileServer
 			serverSocket = new ServerSocket(nPort);
 			serverEndpoint = serverSocket.accept();
 
-			String fileName = "Download.txt"; //Name
-			File file = new File(fileName);
-			byte[] fileContentBytes = new byte[(int) file.length()];
-			FileInputStream fileInputStream = new FileInputStream(fileName);
-			fileInputStream.read(fileContentBytes);
-
 			System.out.println("Server: New client connected: " + serverEndpoint.getRemoteSocketAddress());
 			
 			DataInputStream disReader = new DataInputStream(serverEndpoint.getInputStream());
 			System.out.println(disReader.readUTF());
-			
+
+			//File
+			String fileName = "Download.txt"; //File Path
+			File file = new File(fileName); //Get the File from the File Path
+			byte[] fileContentBytes = new byte[(int) file.length()];
+			FileInputStream fileInputStream = new FileInputStream(fileName);
+			fileInputStream.read(fileContentBytes); //Convert File Contents to Bytes
+
 			//Sending File
 			DataOutputStream dosWriter = new DataOutputStream(serverEndpoint.getOutputStream());
 			System.out.println("Sending file " + fileName + " ["+fileContentBytes.length+"]");
-			//only send contents not file name
+
+			//Sending File Contents to the Client
 			dosWriter.writeInt(fileContentBytes.length);
 			dosWriter.write(fileContentBytes); //File Contents
 

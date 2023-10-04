@@ -20,10 +20,10 @@ public class FileClient
 			DataInputStream disReader = new DataInputStream(clientEndpoint.getInputStream());
 
 			//Read File Content
-			int fileContentLength = disReader.readInt();
+			int fileContentLength = disReader.readInt(); //Get the File Content Size
 			byte[] fileContentBytes = new byte[fileContentLength];
-			disReader.readFully(fileContentBytes,0,fileContentBytes.length);
-			String contents = new String(fileContentBytes);
+			disReader.readFully(fileContentBytes,0,fileContentBytes.length); //Read all of the content in bytes
+			String contents = new String(fileContentBytes); //Convert bytes to String for Writing to txt file
 			//Write Content
 			try{
 				String filename = "Received.txt";
